@@ -29,15 +29,17 @@
 		}],
 		"no-trailing-whitespace": true,
 		"no-unused-variable": [true, "react"],
+    "object-literal-key-quotes": [true, "as-needed"],
 		"object-literal-sort-keys": false,
 		"object-literal-shorthand": false,
+    "jsx-boolean-value": ["never"],
 		"one-variable-per-declaration": [false],
 		"only-arrow-functions": [true, "allow-declarations"],
 		"ordered-imports": [false],
 		"prefer-method-signature": false,
 		"prefer-template": [true, "allow-single-concat"],
 		"quotemark": [true, "single", "jsx-double"],
-		"semicolon": [false, "always"],
+		"semicolon": [true, "always"],
 		"trailing-comma": [true, {
 			"singleline": "never",
 			"multiline": {

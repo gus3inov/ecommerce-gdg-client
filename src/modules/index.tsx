@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Switch, withRouter } from 'react-router-dom';
+import { renderRoutes } from '../utils/routes';
+import routes from './routes';
 
-class App extends Component {
-	render() {
-		return <div className="App">Learn React</div>;
-	}
-}
+const App = () => (
+	<Switch>
+		{renderRoutes(routes)}
+	</Switch>
+);
 
-export default App;
+export default withRouter(App);
