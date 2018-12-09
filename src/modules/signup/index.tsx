@@ -1,6 +1,6 @@
-import React, { Component, ComponentClass } from 'react';
-import { Form, Field } from 'react-final-form';
-import { graphql, DataProps, MutateProps } from 'react-apollo';
+import React, { Component } from 'react';
+import { Field, Form } from 'react-final-form';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -9,43 +9,13 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { FieldText } from '../../ui/atoms';
-
-const styles: any = (theme: any) => ({
-	main: {
-		width: 'auto',
-		display: 'block', // Fix IE 11 issue.
-		marginLeft: theme.spacing.unit * 3,
-		marginRight: theme.spacing.unit * 3,
-		[theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-			width: 400,
-			marginLeft: 'auto',
-			marginRight: 'auto'
-		}
-	},
-	paper: {
-		marginTop: theme.spacing.unit * 8,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`
-	},
-	avatar: {
-		margin: theme.spacing.unit,
-		backgroundColor: theme.palette.secondary.main
-	},
-	form: {
-		width: '100%',
-		marginTop: theme.spacing.unit
-	},
-	submit: {
-		marginTop: theme.spacing.unit * 3
-	}
-});
+import { FieldText, Link } from '../../ui/atoms';
+import styles from './styles';
 
 interface IProps {
 	classes: any;
-	mutate({ variables }: { variables: any}): any;
+
+	mutate({ variables }: { variables: any }): any;
 }
 
 const signUpMutation: any = gql`
@@ -101,6 +71,9 @@ class SignUp extends Component<IProps, any> {
 									type="text"
 									label="Password"
 								/>
+								<Link to="/login">
+									Login
+								</Link>
 								<Button
 									fullWidth
 									onClick={() => handleSubmit()}
