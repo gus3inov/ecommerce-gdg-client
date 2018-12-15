@@ -1,11 +1,12 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import Grid from '@material-ui/core/Grid';
-import { Loader } from '../../atoms';
+import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 import AppTemplate from '../../templates/AppTemplate';
 import withLogout from '../../../hocs/logoutEnhancer';
 import { ProductCard } from '../../molecules';
 import { Products } from '../../../@types';
+import { Layout } from "../../atoms/Layout";
 
 type Props = {
 	data: Products
@@ -21,29 +22,33 @@ const ProductsPage: React.FunctionComponent<Props> = ({
 	hasNextPage,
 }) => (
 	<AppTemplate handleLogout={logout} title="Products">
-		<Grid container spacing={24}>
 			<InfiniteScroll
 				pageStart={0}
 				loadMore={handleLoadMore}
 				hasMore={hasNextPage}
-				loader={<Loader />}
+				loader={(
+					<Layout flow="row" height="200px" justify="center" align="center">
+						<CircularProgress disableShrink />;
+					</Layout>
+				)}
 			>
-				{
-					data && data.map(product => (
-						<Grid
-							item
-							sm={4}
-							key={product.id}
-						>
-							<ProductCard
-								data={product}
-								handleEdit={() => console.log('edit')}
-							/>
-						</Grid>
-					))
-				}
+				<Grid container spacing={24}>
+						{
+							data && data.map((product: any) => (
+								<Grid
+									item
+									sm={4}
+									key={product.node.id}
+								>
+									<ProductCard
+										data={product.node}
+										handleEdit={() => console.log('edit')}
+									/>
+								</Grid>
+							))
+						}
+				</Grid>
 			</InfiniteScroll>
-		</Grid>
 	</AppTemplate>
 );
 

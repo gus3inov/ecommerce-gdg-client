@@ -80,13 +80,15 @@ class Products extends Component<IProps, any> {
 			data,
 			loading,
 		} = this.props;
-		if (loading || !data) {
+		if (!data || !data.productsConnection) {
 			return null;
 		}
+
 		return (
 			<ProductsPage
 				data={data.productsConnection.edges}
 				handleLoadMore={this.loadMore}
+				hasNextPage={data.productsConnection.pageInfo.hasNextPage}
 			/>
 		);
 	}

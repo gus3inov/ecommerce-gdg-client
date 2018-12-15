@@ -4,6 +4,7 @@ const styles = {
 	},
 	media: {
 		objectFit: 'cover',
+		height: '350px',
 	},
 };
 

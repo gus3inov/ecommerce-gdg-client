@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -24,22 +23,19 @@ const ProductCardComponent: React.FunctionComponent<Props> = ({
 	classes,
 }) => (
 	<Card className={classes.card}>
-		<CardActionArea>
-			<CardMedia
-				component="img"
-				className={classes.media}
-				image={data.pictureUrl}
-				title="Contemplative Reptile"
-			/>
-			<CardContent>
-				<Typography gutterBottom variant="h5" component="h2">
-					{data.name}
-				</Typography>
-				<Typography component="p">
-					{data.description}
-				</Typography>
-			</CardContent>
-		</CardActionArea>
+		<CardMedia
+			component="img"
+			className={classes.media}
+			image={data.pictureUrl}
+		/>
+		<CardContent>
+			<Typography gutterBottom variant="h5" component="h2">
+				{data.name}
+			</Typography>
+			<Typography component="p">
+				{data.description}
+			</Typography>
+		</CardContent>
 		<CardActions>
 			<Button size="small" color="primary">
 				{data.price}

@@ -9,7 +9,7 @@ export const PRODUCTS_QUERY = gql`
 	  ) {
 		productsConnection(
 		  after: $after
-		  first: 5
+		  first: 6
 		  orderBy: $orderBy
 		  where: $where
 		) {
@@ -54,9 +54,11 @@ export interface InjectedProps {
 }
 
 export const withProducts: any = graphql<{}, any, any>(PRODUCTS_QUERY, {
-	name: 'fetchProducts',
+	options: {
+		variables: {
+			orderBy: 'createdAt_ASC',
+		},
+	},
 });
 
-export const withSubscriptionProducts: any = graphql<{}, any, any>(PRODUCTS_SUBSCRIPTION_QUERY, {
-	name: 'subscriptionProduct',
-});
+export const withSubscriptionProducts: any = graphql<{}, any, any>(PRODUCTS_SUBSCRIPTION_QUERY);
