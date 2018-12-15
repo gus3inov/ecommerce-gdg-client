@@ -22,7 +22,7 @@ const refreshTokenMutation = gql`
 class DefaultRoute extends React.Component<IProps, any> {
 	async componentDidMount() {
 		const token = await getAccessToken();
-
+		console.log(token);
 		if (!token) {
 			this.props.history.push('/signup');
 			return;
