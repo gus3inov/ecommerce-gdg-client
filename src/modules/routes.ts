@@ -5,6 +5,7 @@ import { TypeRoute } from '../@types';
 const SignUp = lazy(() => import('./signup'));
 const LogIn = lazy(() => import('./login'));
 const Products = lazy(() => import('./products'));
+const AddProduct = lazy(() => import('./products/AddProduct'));
 const DefaultRoute = lazy(() => import('../commons/DefaultRoute'));
 
 const routes: TypeRoute[] = [
@@ -27,6 +28,11 @@ const routes: TypeRoute[] = [
 		path: '/products',
 		exact: true,
 		component: suspenseEnhancer(Products),
+	},
+	{
+		path: '/products/add',
+		exact: true,
+		component: suspenseEnhancer(AddProduct),
 	},
 ];
 
