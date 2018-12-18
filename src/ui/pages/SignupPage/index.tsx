@@ -31,7 +31,6 @@ const SignUpPage: React.FunctionComponent<IProps> = ({
 			</Typography>
 			<Form
 				onSubmit={onSubmit}
-				initialValues={{ employed: true, stooge: 'larry' }}
 				render={({ handleSubmit }) => (
 					<form className={classes.form}>
 						<Field
