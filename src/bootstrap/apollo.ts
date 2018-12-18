@@ -24,6 +24,10 @@ const socketlink = new WebSocketLink(clientSocket);
 
 const stateLink = withClientState({
 	cache: new InMemoryCache(),
+	defaults: {
+		visibilityFilter: 'SHOW_ALL',
+		todos: [],
+	},
 	resolvers: {
 		Mutation: {
 			addUserId: (_: any, { userId }: any, { cache }: any) => {

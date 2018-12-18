@@ -75,6 +75,20 @@ class Products extends Component<IProps, any> {
 		}
 	}
 
+	onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const {
+			data: { refetch },
+		} = this.props;
+		const value = e.target.value;
+		console.log(value);
+		refetch({
+			where: {
+				name_contains: value,
+			},
+			after: null,
+		});
+	}
+
 	render() {
 		const {
 			data,
@@ -83,12 +97,13 @@ class Products extends Component<IProps, any> {
 		if (!data || !data.productsConnection) {
 			return null;
 		}
-
+		console.log(data.productsConnection.edges);
 		return (
 			<ProductsPage
 				data={data.productsConnection.edges}
 				handleLoadMore={this.loadMore}
 				hasNextPage={data.productsConnection.pageInfo.hasNextPage}
+				onSearch={this.onSearch}
 			/>
 		);
 	}

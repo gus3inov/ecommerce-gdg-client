@@ -1,18 +1,20 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import Grid from '@material-ui/core/Grid';
+import InputBase from '@material-ui/core/InputBase';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 import AppTemplate from '../../templates/AppTemplate';
 import withLogout from '../../../hocs/logoutEnhancer';
 import { ProductCard } from '../../molecules';
 import { Products } from '../../../@types';
-import { Layout } from "../../atoms/Layout";
+import { Layout } from '../../atoms/Layout';
 
 type Props = {
 	data: Products
 	hasNextPage: boolean
 	logout(): void;
 	handleLoadMore(): void;
+	onSearch(): void;
 };
 
 const ProductsPage: React.FunctionComponent<Props> = ({
@@ -20,8 +22,18 @@ const ProductsPage: React.FunctionComponent<Props> = ({
 	logout,
 	handleLoadMore,
 	hasNextPage,
+	onSearch,
 }) => (
 	<AppTemplate handleLogout={logout} title="Products">
+			<Layout
+				flow="row"
+				margin="0 0 40px 0"
+			>
+				<InputBase
+					placeholder="Search…"
+					onChange={onSearch}
+				/>
+			</Layout>
 			<InfiniteScroll
 				pageStart={0}
 				loadMore={handleLoadMore}
