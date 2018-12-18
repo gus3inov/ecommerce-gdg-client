@@ -12,6 +12,7 @@ import { Layout } from '../../atoms/Layout';
 type Props = {
 	data: Products
 	hasNextPage: boolean
+	loading: boolean;
 	logout(): void;
 	handleLoadMore(): void;
 	onSearch(): void;
@@ -20,6 +21,7 @@ type Props = {
 const ProductsPage: React.FunctionComponent<Props> = ({
 	data,
 	logout,
+	loading,
 	handleLoadMore,
 	hasNextPage,
 	onSearch,
@@ -33,6 +35,12 @@ const ProductsPage: React.FunctionComponent<Props> = ({
 					placeholder="Search…"
 					onChange={onSearch}
 				/>
+				{loading && (
+					<CircularProgress
+						size="30px"
+						disableShrink
+					/>
+				)}
 			</Layout>
 			<InfiniteScroll
 				pageStart={0}

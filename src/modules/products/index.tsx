@@ -80,7 +80,7 @@ class Products extends Component<IProps, any> {
 			data: { refetch },
 		} = this.props;
 		const value = e.target.value;
-		console.log(value);
+
 		refetch({
 			where: {
 				name_contains: value,
@@ -92,14 +92,14 @@ class Products extends Component<IProps, any> {
 	render() {
 		const {
 			data,
-			loading,
 		} = this.props;
 		if (!data || !data.productsConnection) {
 			return null;
 		}
-		console.log(data.productsConnection.edges);
+
 		return (
 			<ProductsPage
+				loading={data.loading}
 				data={data.productsConnection.edges}
 				handleLoadMore={this.loadMore}
 				hasNextPage={data.productsConnection.pageInfo.hasNextPage}
