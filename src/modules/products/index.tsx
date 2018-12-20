@@ -3,17 +3,23 @@ import React, { Component } from 'react';
 import {
 	withProducts,
 	InjectedProps,
+	PRODUCTS_QUERY,
 	PRODUCTS_SUBSCRIPTION_QUERY,
 } from '../../queryHocs/products';
+import {
+	withProductDelete,
+} from '../../mutationHocs/products';
 import ProductsPage from '../../ui/pages/ProductsPage';
 
 interface IProps extends InjectedProps {
 	classes: any;
 	loading: boolean;
+	deleteProduct(options: any): any;
 	mutate({ variables }: { variables: any }): any;
 }
 
 @withProducts
+@withProductDelete
 class Products extends Component<IProps, any> {
 	componentDidMount() {
 		const { data } = this.props;
@@ -75,6 +81,32 @@ class Products extends Component<IProps, any> {
 		}
 	}
 
+	deleteProduct = async (id: number) => {
+		const {
+			deleteProduct,
+			data: { variables },
+		} = this.props;
+		await deleteProduct({
+			variables: {
+				id,
+			},
+			update: (store: any) => {
+				const data = store.readQuery({
+					query: PRODUCTS_QUERY,
+					variables,
+				});
+				data.productsConnection.edges = data.productsConnection.edges.filter(
+					(x: any) => x.node.id !== id
+				);
+				store.writeQuery({
+					query: PRODUCTS_QUERY,
+					data,
+					variables,
+				});
+			},
+		});
+	}
+
 	onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const {
 			data: { refetch },
@@ -102,6 +134,7 @@ class Products extends Component<IProps, any> {
 				loading={data.loading}
 				data={data.productsConnection.edges}
 				handleLoadMore={this.loadMore}
+				deleteProduct={this.deleteProduct}
 				hasNextPage={data.productsConnection.pageInfo.hasNextPage}
 				onSearch={this.onSearch}
 			/>
