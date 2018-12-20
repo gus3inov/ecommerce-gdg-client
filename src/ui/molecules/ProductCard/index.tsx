@@ -7,26 +7,29 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Create from '@material-ui/icons/Create';
+import Delete from '@material-ui/icons/Delete';
 
+import { Product, StringOrNumber } from '../../../@types';
 import styles from './styles';
-import { Product } from '../../../@types';
 
 type Props = {
 	data: Product;
 	classes?: any;
 	handleEdit(): void;
+	handleDelete(id: StringOrNumber): void;
 };
 
 const ProductCardComponent: React.FunctionComponent<Props> = ({
 	data,
 	handleEdit,
+	handleDelete,
 	classes,
 }) => (
 	<Card className={classes.card}>
 		<CardMedia
 			component="img"
 			className={classes.media}
-			image={data.pictureUrl}
+			image={`http://localhost:4000/${data.pictureUrl}`}
 		/>
 		<CardContent>
 			<Typography gutterBottom variant="h5" component="h2">
@@ -47,6 +50,14 @@ const ProductCardComponent: React.FunctionComponent<Props> = ({
 			>
 				<Create />
 				Edit
+			</Button>
+			<Button
+				onClick={() => handleDelete(data.id)}
+				size="small"
+				color="primary"
+			>
+				<Delete />
+				Delete
 			</Button>
 		</CardActions>
 	</Card>

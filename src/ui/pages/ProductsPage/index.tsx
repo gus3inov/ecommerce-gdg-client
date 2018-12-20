@@ -15,6 +15,7 @@ type Props = {
 	loading: boolean;
 	logout(): void;
 	handleLoadMore(): void;
+	deleteProduct(id: number): void;
 	onSearch(): void;
 };
 
@@ -24,6 +25,7 @@ const ProductsPage: React.FunctionComponent<Props> = ({
 	loading,
 	handleLoadMore,
 	hasNextPage,
+	deleteProduct,
 	onSearch,
 }) => (
 	<AppTemplate handleLogout={logout} title="Products">
@@ -63,6 +65,7 @@ const ProductsPage: React.FunctionComponent<Props> = ({
 									<ProductCard
 										data={product.node}
 										handleEdit={() => console.log('edit')}
+										handleDelete={deleteProduct}
 									/>
 								</Grid>
 							))

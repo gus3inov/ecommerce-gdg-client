@@ -21,6 +21,7 @@ export const PRODUCTS_QUERY = gql`
 			node {
 			  id
 			  price
+				description
 			  pictureUrl
 			  name
 			  seller {
@@ -36,14 +37,15 @@ export const PRODUCTS_SUBSCRIPTION_QUERY = gql`
 	subscription {
 	  product(where: { mutation_in: UPDATED }) {
 		node {
-		  __typename
-		  id
-		  name
-		  price
-		  pictureUrl
-		  seller {
+			__typename
 			id
-		  }
+			name
+			price
+			description
+			pictureUrl
+			seller {
+				id
+			}
 		}
 	  }
 	}
