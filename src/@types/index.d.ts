@@ -25,7 +25,7 @@ type User = {
 };
 
 type Product = {
-	id: string;
+	id: StringOrNumber;
 	name: string;
 	pictureUrl: string;
 	description: string;
