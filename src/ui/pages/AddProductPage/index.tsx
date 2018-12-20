@@ -46,11 +46,22 @@ const AddProductPage: React.FunctionComponent<Props> = ({
 							/>
 						</div>
 						<div>
+							<Field
+								name="description"
+								component={FieldText}
+								type="text"
+								label="Description"
+							/>
+						</div>
+						<Layout
+							flow="row"
+							margin="20px 0 0 0"
+						>
 							<ImageUpload
 								file={{}}
 								onChange={handleAddImage}
 							/>
-						</div>
+						</Layout>
 						<Layout
 							flow="row"
 							margin="20px 0 0 0"
